@@ -1,0 +1,2 @@
+C:\Users\沐雨橙风\Desktop\cpp\london_cpp_lecture\cpp_test_1_1\Debug\cpp_test_1_1.exe
+C:\Users\沐雨橙风\Desktop\cpp\london_cpp_lecture\cpp_test_1_1\Debug\cpp_test_1_1.pdb
