@@ -1,0 +1,2 @@
+C:\Users\沐雨橙风\Desktop\cpp\london_cpp_lecture\cpp_test_3_2_my_vector\Debug\cpp_test_3_2_my_vector.exe
+C:\Users\沐雨橙风\Desktop\cpp\london_cpp_lecture\cpp_test_3_2_my_vector\Debug\cpp_test_3_2_my_vector.pdb
