@@ -60,44 +60,7 @@ public:
     double* end() {
         return data + size();    
     }
-    /*运算符重载+*/   
-    myMatrix operator+(myMatrix& b) {
-        assert((this->row_size==b.row_size) && (this->col_size==b.col_size));
-        myMatrix temp(row_size,col_size,0);
-        for (int i = 0; i != size(); ++i)
-            temp.data[i] = this->data[i] + b.data[i];
-        return temp;
-    }
-    myMatrix operator-(myMatrix& b) {
-        assert((this->row_size == b.row_size) && (this->col_size == b.col_size));
-        myMatrix temp(row_size, col_size, 0);
-        for (int i = 0; i != size(); ++i)
-            temp.data[i] = this->data[i] - b.data[i];
-        return temp;    
-    }
-    myMatrix operator*(myMatrix& b) {
-        assert((this->row_size == b.row_size) && (this->col_size == b.col_size));
-        myMatrix temp(row_size, col_size, 0);
-        for (int i = 0; i != size(); ++i)
-            temp.data[i] = this->data[i] * b.data[i];
-        return temp;
-    }
-    /*运算符重载+=*/
-    myMatrix operator+=(const myMatrix& b) {
-        assert((this->row_size == b.row_size) && (this->col_size == b.col_size));
-        myMatrix temp(row_size, col_size, 0);
-        for (int i = 0; i != size(); ++i)
-            temp.data[i] = this->data[i] + b.data[i];
-        return temp;
-    }
-    /*运算符重载-=*/
-    myMatrix operator-=(const myMatrix& b) {
-        assert((this->row_size == b.row_size) && (this->col_size == b.col_size));
-        myMatrix temp(row_size, col_size, 0);
-        for (int i = 0; i != size(); ++i)
-            temp.data[i] = this->data[i] - b.data[i];
-        return temp;
-    }
+   
    
 private:
     /*行数*/
@@ -109,7 +72,48 @@ private:
   
  
 };
-
+/*运算符重载+*/
+myMatrix& operator+(myMatrix& a,myMatrix& b) {
+    assert((a.getRowSize() == b.getRowSize()) && (a.getColSize() == b.getColSize()));
+    myMatrix* temp=new myMatrix(a.getRowSize(), a.getColSize(), 0);
+    for (int i = 0; i != a.getRowSize(); ++i)
+        for (int j = 0; j != a.getColSize(); ++j)
+            temp->set(i + 1, j + 1,(a.get(i + 1, j + 1) + b.get(i + 1, j + 1)));
+    return *temp;
+}
+myMatrix operator-(myMatrix& a, myMatrix& b) {
+    assert((a.getRowSize() == b.getRowSize()) && (a.getColSize() == b.getColSize()));
+    myMatrix* temp = new myMatrix(a.getRowSize(), a.getColSize(), 0);
+    for (int i = 0; i != a.getRowSize(); ++i)
+        for (int j = 0; j != a.getColSize(); ++j)
+            temp->set(i + 1, j + 1, (a.get(i + 1, j + 1) - b.get(i + 1, j + 1)));
+    return *temp;
+}
+myMatrix operator*(myMatrix& a, myMatrix& b) {
+    assert((a.getRowSize() == b.getRowSize()) && (a.getColSize() == b.getColSize()));
+    myMatrix* temp = new myMatrix(a.getRowSize(), a.getColSize(), 0);
+    for (int i = 0; i != a.getRowSize(); ++i)
+        for (int j = 0; j != a.getColSize(); ++j)
+            temp->set(i + 1, j + 1, (a.get(i + 1, j + 1) * b.get(i + 1, j + 1)));
+    return *temp;
+}
+myMatrix operator+=(myMatrix& a, myMatrix& b) {
+    assert((a.getRowSize() == b.getRowSize()) && (a.getColSize() == b.getColSize()));
+    myMatrix* temp = new myMatrix(a.getRowSize(), a.getColSize(), 0);
+    for (int i = 0; i != a.getRowSize(); ++i)
+        for (int j = 0; j != a.getColSize(); ++j)
+            temp->set(i + 1, j + 1, (a.get(i + 1, j + 1) + b.get(i + 1, j + 1)));
+    return *temp;
+}
+/*运算符重载-=*/
+myMatrix operator-=(myMatrix& a, myMatrix& b) {
+    assert((a.getRowSize() == b.getRowSize()) && (a.getColSize() == b.getColSize()));
+    myMatrix* temp = new myMatrix(a.getRowSize(), a.getColSize(), 0);
+    for (int i = 0; i != a.getRowSize(); ++i)
+        for (int j = 0; j != a.getColSize(); ++j)
+            temp->set(i + 1, j + 1, (a.get(i + 1, j + 1) - b.get(i + 1, j + 1)));
+    return *temp;
+}
 /*输入输出运算符*/
 ostream& operator<<(ostream& os, myMatrix& m) {
     for (int i = 0; i != m.getRowSize(); ++i) {
@@ -127,8 +131,17 @@ int main()
     myMatrix m2(3, 3, 1);
     cout << m2;
 
-    auto m = m1 + m2;
-    cout << m;
+    myMatrix m3(10,10,100);
+    cout << "m3:" << endl;
+    cout << m3;
+    myMatrix m4(10, 10, 0.1);
+    cout << "m4:" << endl;
+    cout << m4;
+    auto m = m3 + m4;
+    cout << "m:" << endl;
+    auto m100 = m3 * m4;
+    cout << "m100:" << endl;
+    cout << m100;
 }
 
 
