@@ -1,0 +1,2 @@
+C:\Users\沐雨橙风\Desktop\cpp\london_cpp_lecture\cpp_random\Debug\cpp_random.exe
+C:\Users\沐雨橙风\Desktop\cpp\london_cpp_lecture\cpp_random\Debug\cpp_random.pdb
